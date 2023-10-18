@@ -1,36 +1,18 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Koleksi') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr>
-                                <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Nama Koleksi</th>
-                                <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Jenis Koleksi</th>
-                                <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Jumlah Koleksi</th>
-                                <th class="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($collections as $collection)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $collection->namaKoleksi }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $collection->jenisKoleksi }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $collection->jumlahKoleksi }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><a href="{{ route('koleksiView', $collection) }}"><button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-blue-600">Rincian</button></a></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+@section('content')
+<div class="container mt-4">
+        <div class="card">
+            <!-- 6706223008 Riffqi Dava Sundara -->
+            <div class="card-header">Manage Users</div>
+            <div class="card-body">
+                {{ $dataTable->table() }}
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
+
+
+@push('scripts')
+    {{ $dataTable->scripts() }}
+@endpush

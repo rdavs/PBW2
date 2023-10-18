@@ -1,4 +1,5 @@
 <?php
+// 6706223008 Riffqi Dava Sundara
 
 namespace App\Http\Controllers;
 
@@ -8,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\DataTables\CollectionsDataTable;
 
 
 class CollectionController extends Controller
@@ -15,11 +17,10 @@ class CollectionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CollectionsDataTable $dataTable)
     {
-        $collections = Collection::all();
 
-        return view('koleksi.daftarKoleksi', compact(var_name: 'collections'));
+        return $dataTable->render('koleksi.daftarKoleksi');
     }
 
     /**
@@ -39,6 +40,8 @@ class CollectionController extends Controller
             'namaKoleksi' => $request->namaKoleksi,
             'jenisKoleksi' => $request->jenisKoleksi,
             'jumlahKoleksi' => $request->jumlahKoleksi,
+            'namaPengarang' => $request->namaPengarang,
+            'tahunTerbit' => $request->tahunTerbit
         ]);
 
         event(new Registered($collection));

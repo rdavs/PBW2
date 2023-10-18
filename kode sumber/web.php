@@ -1,8 +1,11 @@
 <?php
-
+//6706223008 Riffqi Dava Sundara
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\UsersController;
+ 
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +52,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';    
+//Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

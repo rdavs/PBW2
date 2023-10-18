@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+//6706223008 Riffqi Dava Sundara
 
+use App\DataTables\UsersDataTable;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,6 +40,8 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+
+
     /**
      * Delete the user's account.
      */
@@ -60,11 +64,9 @@ class ProfileController extends Controller
     }
 
     // display list
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
-        $users = User::all();
-
-        return view('user.daftarPengguna', compact(var_name: 'users'));
+        return $dataTable->render('user.daftarPengguna');
     }
 
     // display particular user
@@ -72,4 +74,5 @@ class ProfileController extends Controller
     {
         return view('user.infoPengguna', ['user' => $user]);
     }
+
 }

@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-    // Nama : Ihsan Muhammad Iqbal
-    // NIM : 6706220123
-    // Kelas : 46-03
 class UserController extends Controller
 {
     /**

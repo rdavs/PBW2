@@ -16,9 +16,6 @@ use App\Http\Controllers\UsersController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Nama : Ihsan Muhammad Iqbal
-// NIM : 6706220123
-// Kelas : 46-03
 Route::get('/', function () {
     return view('welcome');
 });

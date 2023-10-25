@@ -4,8 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\UsersController;
- 
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,9 @@ Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// Nama : Ihsan Muhammad Iqbal
+// NIM : 6706220123
+// Kelas : 46-03
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,11 +28,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route untuk list pengguna
+// Route untuk daftar pengguna
 Route::get('/user', [\App\Http\Controllers\ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('user');
 
 // Route untuk show daftar pengguna
 Route::get('/userView/{user}', [\App\Http\Controllers\ProfileController::class, 'show'])->middleware(['auth', 'verified'])->name('userView');
+
+// Route untuk update pengguna
+Route::post('/userUpdate', [\App\Http\Controllers\UsersController::class, 'update'])->middleware(['auth', 'verified'])->name('userUpdate');
 
 // Route untuk daftar koleksi
 Route::get('/koleksi', [\App\Http\Controllers\CollectionController::class, 'index'])->middleware(['auth', 'verified'])->name('koleksi');
@@ -45,13 +49,15 @@ Route::post('/koleksiStore', [\App\Http\Controllers\CollectionController::class,
 // Route untuk show koleksi
 Route::get('/koleksiView/{collection}', [\App\Http\Controllers\CollectionController::class, 'show'])->middleware(['auth', 'verified'])->name('koleksiView');
 
+// Route untuk update koleksi
+Route::post('/koleksiUpdate', [\App\Http\Controllers\CollectionController::class, 'update'])->middleware(['auth', 'verified'])->name('koleksiUpdate');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';    
-//Auth::routes();
+require __DIR__.'/auth.php';
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();

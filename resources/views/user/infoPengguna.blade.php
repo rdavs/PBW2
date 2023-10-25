@@ -1,54 +1,95 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-    <h1 class="my-4" style="font-weight: bold;">Rincian Pengguna</h1>
+    <h1 class="my-4" style="font-weight: bold;">Edit Pengguna</h1>
 
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-striped">
-                <tr>
-                    <th class="text-start">Full Name</th>
-                    <td>{{ $user->fullname }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Email</th>
-                    <td>{{ $user->email }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Phone Number</th>
-                    <td>{{ $user->phoneNumber }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Address</th>
-                    <td>{{ $user->address }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Tanggal Lahir</th>
-                    <td>{{ $user->birthdate }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Agama</th>
-                    <td>{{ $user->religion }}</td>
-                </tr>
-                @php
-                $gender = '';
-                switch ($user->gender) {
-                case 1:
-                $gender = 'Pria';
-                break;
-                case 2:
-                $gender = 'Wanita';
-                break;
-                }
-                @endphp
-                <tr>
-                    <th class="text-start">Jenis Kelamin</th>
-                    <td>{{ $gender }}</td>
-                </tr>
-            </table>
-            <a href="{{ route('user') }}" class="btn btn-primary">Back</a>
+    <form method="POST" action="{{ route('userUpdate') }}">
+        @csrf
+
+        {{-- to detect id --}}
+        <input type="hidden" name="id" value="{{ $user->id }}">
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    {{-- ID User --}}
+                    <tr>
+                        <th class="text-start">ID User*</th>
+                        <td>{{ $user->id }}</td>
+                    </tr>
+                    {{-- Username --}}
+                    <tr>
+                        <th class="text-start">Username*</th>
+                        <td>{{ $user->username }}</td>
+                    </tr>
+                    {{-- Fullname --}}
+                    <tr>
+                        <th class="text-start">Fullname*</th>
+                        <td>
+                            <input type="text" name="fullname" value="{{ $user->fullname }}">
+                        </td>
+                    </tr>
+                    {{-- Password --}}
+                    <tr>
+                        <th class="text-start">Password*</th>
+                        <td>
+                            <input type="password" name="password" value="">
+                        </td>
+                    </tr>
+                    {{-- Password confirmation --}}
+                    <tr>
+                        <th class="text-start">Konfirmasi Password*</th>
+                        <td>
+                            <input type="password" name="password_confirmation" value="">
+                        </td>
+                    </tr>
+                    {{-- Email --}}
+                    <tr>
+                        <th class="text-start">Email*</th>
+                        <td>{{ $user->email }}</td>
+                    </tr>
+                    {{-- Adress --}}
+                    <tr>
+                        <th class="text-start">Address*</th>
+                        <td>
+                            <input type="text" name="adress" value="{{ $user->adress }}">
+                        </td>
+                    </tr>
+                    {{-- Phone Number --}}
+                    <tr>
+                        <th class="text-start">Phone Number*</th>
+                        <td>
+                            <input type="text" name="phoneNumber" value="{{ $user->phoneNumber }}">
+                        </td>
+                    </tr>
+                    {{-- Birthdate --}}
+                    <tr>
+                        <th class="text-start">Birthdate*</th>
+                        <td>{{ $user->birthdate }}</td>
+                    </tr>
+                    {{-- Agama --}}
+                    <tr>
+                        <th class="text-start">Agama*</th>
+                        <td>
+                            <input type="text" name="agama" value="{{ $user->agama }}">
+                        </td>
+                    </tr>
+                    {{-- Gender --}}
+                    <tr>
+                        <th class="text-start">Jenis Kelamin*</th>
+                        <td>
+                            <select name="gender">
+                                <option value="1" {{ $user->gender === 1 ? 'selected' : '' }}>Pria</option>
+                                <option value="2" {{ $user->gender === 2 ? 'selected' : '' }}>Wanita</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <a href="{{ route('user') }}" class="btn btn-secondary">Back</a>
+                <button class="btn btn-success">Update</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
+
 @endsection
